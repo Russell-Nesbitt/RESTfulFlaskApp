@@ -1,18 +1,15 @@
 import os
 
 from flask import Blueprint, Flask
-from flask_cors import CORS
 from flask_restx import Api
 
 app = Flask(__name__)
-
-cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 blueprint = Blueprint("api", __name__, url_prefix="/api/v1")
 
 api = Api(
     blueprint,
-    version="0.1",
+    version="1.0",
     title="Example API",
     description="Example API for an Example",
     validate=True,
