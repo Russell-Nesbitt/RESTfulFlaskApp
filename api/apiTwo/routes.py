@@ -1,27 +1,27 @@
 from flask import request
 from flask_restx import Resource
 
-from api.apiOne import api
+from api.apiTwo import api
 
-from api.apiOne.schemas import (full_schema, id_schema, partial_schema)
+from api.apiTwo.schemas import (full_schema, id_schema, partial_schema)
 
-from api.apiOne.handlers import (example_get, example_post, example_delete, example_put, example_patch)
+from api.apiTwo.handlers import (example_get, example_post, example_delete, example_put, example_patch)
 
 @api.route("/<id_val>/urlExample")
 class exampleAPIURL(Resource):
     #Should Get a resource by providing the Unique ID in the Request URL
-    #Example:
+    #Example
     #Operation: GET
-    #URL: http://127.0.0.1:8060/api/v1/apiOne/1/urlExample
+    #URL: http://127.0.0.1:8060/api/v1/apiTwo/1/urlExample
     #Body: {}
     @api.response(400, "Validation Error")
     def get(self, id_val: int):
         return example_get(id_val), 200
     
     #Should Delete a resource by providing the Unique ID in the Request URL
-    #Example:
+    #Example
     #Operation: DELETE
-    #URL: http://127.0.0.1:8060/api/v1/apiOne/1/urlExample
+    #URL: http://127.0.0.1:8060/api/v1/apiTwo/1/urlExample
     #Body: {}
     @api.response(400, "Validation Error")
     def delete(self, id_val: int):
@@ -32,7 +32,7 @@ class exampleAPISchema(Resource):
     #Should Get a resource by providing the Unique ID in the Request Body, parsed using a Schema
     #Example:
     #Operation: GET
-    #URL: http://127.0.0.1:8060/api/v1/apiOne/example
+    #URL: http://127.0.0.1:8060/api/v1/apiTwo/example
     #Body: {"val_id": 1}
     api.expect(id_schema)
     @api.response(400, "Validation Error")
@@ -45,7 +45,7 @@ class exampleAPISchema(Resource):
     #Should create a new resource by providing the Fields in the Request Body, parsed using a Schema
     #Example:
     #Operation: POST
-    #URL: http://127.0.0.1:8060/api/v1/apiOne/example
+    #URL: http://127.0.0.1:8060/api/v1/apiTwo/example
     #Body: {"val_id": 1, "val_one": "str1", "val_two": "str2"}
     @api.expect(full_schema)
     @api.response(400, "Validation Error")
@@ -61,7 +61,7 @@ class exampleAPISchema(Resource):
     #Any fields not included in the request are set to None
     #Example:
     #Operation: PUT
-    #URL: http://127.0.0.1:8060/api/v1/apiOne/example
+    #URL: http://127.0.0.1:8060/api/v1/apiTwo/example
     #Body: {"val_id": 1} #sets val_one and val_two to None
     #Body: {"val_id": 1, "val_one": "newStr1"} #Changes val_one to newStr1, sets val_two to None
     #Body: {"val_id": 1, "val_two": "newStr2"} #Changes val_two to newStr2, sets val_one to None
@@ -79,7 +79,7 @@ class exampleAPISchema(Resource):
     #Should modify an existing resource by sending ONLY the fields which you want to change in the Request Body, parsed using a Schema
     #Example:
     #Operation: PATCH
-    #URL: http://127.0.0.1:8060/api/v1/apiOne/example
+    #URL: http://127.0.0.1:8060/api/v1/apiTwo/example
     #Body: {"val_id": 1} #Changes nothing
     #Body: {"val_id": 1, "val_one": "newStr1"} #Changes val_one to newStr1
     #Body: {"val_id": 1, "val_two": "newStr2"} #Changes val_two to newStr2
@@ -97,7 +97,7 @@ class exampleAPISchema(Resource):
     #Should Delete a resource by providing the Unique ID in the Request Body, parsed using a Schema
     #Example:
     #Operation: DELETE
-    #URL: http://127.0.0.1:8060/api/v1/apiOne/example
+    #URL: http://127.0.0.1:8060/api/v1/apiTwo/example
     #Body: {"val_id": 1}
     api.expect(id_schema)
     @api.response(400, "Validation Error")

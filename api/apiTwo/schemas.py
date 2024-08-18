@@ -1,4 +1,4 @@
-from api.apiOne import api
+from api.apiTwo import api
 from flask_restx import fields
 
 full_schema = api.model(
